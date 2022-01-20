@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MTConnectStreams xmlns:m="urn:mtconnect.org:MTConnectStreams:1.2" xmlns="urn:mtconnect.org:MTConnectStreams:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:mtconnect.org:MTConnectStreams:1.2 http://www.mtconnect.org/schemas/MTConnectStreams_1.2.xsd">
+	<Header creationTime="2022-01-20T15:16:31.493Z" sender="HAASSTORM" instanceId="1642679004" version="1.2.0.1.2" bufferSize="333" firstSequence="19247" lastSequence="19579" nextSequence="19580"/>
+	<Streams>
+		<DeviceStream name="Machine" uuid="000">
+			<ComponentStream component="Controller" componentId="cont1" name="MachineController">
+				<Samples>
+					<AxisFeedrate dataItemId="rovrd" timestamp="2022-01-20T11:43:29.876Z" sequence="7" name="RapidOverride" subType="OVERRIDE">100</AxisFeedrate>
+					<AccumulatedTime dataItemId="lcycle" timestamp="2022-01-20T13:05:27.025Z" sequence="5682" name="LastCycle">4688</AccumulatedTime>
+					<AccumulatedTime dataItemId="tcycle" timestamp="2022-01-20T15:16:31.002Z" sequence="19579" name="ThisCycle">7689</AccumulatedTime>
+					<AccumulatedTime dataItemId="cyremtim" timestamp="2022-01-20T14:26:29.453Z" sequence="15973" name="CycleRemainingTime">0</AccumulatedTime>
+					<PathFeedrate dataItemId="fdovrd" timestamp="2022-01-20T11:43:29.877Z" sequence="18" name="FeedrateOverride" subType="OVERRIDE">100</PathFeedrate>
+					<SpindleSpeed dataItemId="sspeed" timestamp="2022-01-20T13:08:23.207Z" sequence="5694" name="SpindleSpeed" subType="ACTUAL">2999.725341796875</SpindleSpeed>
+					<SpindleSpeed dataItemId="ssovrd" timestamp="2022-01-20T11:43:29.876Z" sequence="12" name="SpindleSpeedOverride" subType="OVERRIDE">100</SpindleSpeed>
+				</Samples>
+				<Events>
+					<EmergencyStop dataItemId="estop" timestamp="2022-01-20T13:08:18.195Z" sequence="5688" name="EmergencyStop">ARMED</EmergencyStop>
+					<ControllerMode dataItemId="mode" timestamp="2022-01-20T11:43:29.877Z" sequence="14" name="Mode">AUTOMATIC</ControllerMode>
+					<Message dataItemId="elog" timestamp="2022-01-20T13:08:21.880Z" sequence="5691" name="EventLog">
+						<Haas>
+							<EventLogEntries>
+								<EventLogEntry id="1" timestamp="2022-01-20T11:47:17.851Z">Program Started</EventLogEntry>
+								<EventLogEntry id="2" timestamp="2022-01-20T13:05:26.219Z">Program Stopped</EventLogEntry>
+								<EventLogEntry id="1" timestamp="2022-01-20T13:08:21.880Z">Program Started</EventLogEntry>
+							</EventLogEntries>
+						</Haas>
+					</Message>
+					<Execution dataItemId="rstat" timestamp="2022-01-20T13:08:23.207Z" sequence="5693" name="RunStatus">ACTIVE</Execution>
+					<Message dataItemId="aalarms" timestamp="2022-01-20T13:08:19.195Z" sequence="5690" name="ActiveAlarms">NO ACTIVE ALARMS</Message>
+					<Message dataItemId="macdsp1" timestamp="2022-01-20T11:43:29.877Z" sequence="19" name="MacroDispl1">0</Message>
+					<Message dataItemId="lpremain" timestamp="2022-01-20T11:43:29.876Z" sequence="8" name="LoopsRemaining">0</Message>
+					<Message dataItemId="m30c2" timestamp="2022-01-20T15:16:30.003Z" sequence="19578" name="M30Counter2">1278</Message>
+					<Message dataItemId="m30c1" timestamp="2022-01-20T15:16:30.002Z" sequence="19576" name="M30Counter1">1278</Message>
+					<Message dataItemId="macdsp2" timestamp="2022-01-20T11:43:29.875Z" sequence="6" name="MacroDispl2">0</Message>
+					<Program dataItemId="ncprog" timestamp="2022-01-20T11:43:29.876Z" sequence="13" name="Program">FORATURA.nc</Program>
+				</Events>
+				<Condition>
+					<Normal dataItemId="mcond" timestamp="2022-01-20T13:08:19.195Z" sequence="5689" type="SYSTEM" name="MachineCondition"/>
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Device" componentId="dev1" name="Machine" uuid="000">
+				<Events>
+					<Availability dataItemId="avail" timestamp="2022-01-20T11:43:27.791Z" sequence="1" name="Availability">AVAILABLE</Availability>
+				</Events>
+			</ComponentStream>
+		</DeviceStream>
+	</Streams>
+</MTConnectStreams>

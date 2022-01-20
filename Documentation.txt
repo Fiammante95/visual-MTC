@@ -1,0 +1,22 @@
+You cannot send a GET request to the MTConnect agent from outside the agent's server domain.
+That's because you are doing a cross origin request, as explained in the following:
+
+
+https://stackoverflow.com/questions/20035101/why-does-my-javascript-code-receive-a-no-access-control-allow-origin-header-i
+https://stackoverflow.com/questions/10752055/cross-origin-requests-are-only-supported-for-http-error-when-loading-a-local
+https://stackoverflow.com/questions/5584923/a-cors-post-request-works-from-plain-javascript-but-why-not-with-jquery
+https://stackoverflow.com/questions/43871637/no-access-control-allow-origin-header-is-present-on-the-requested-resource-whe
+
+SO, what you can do is to proxy the agent:
+https://pmcoltrane.wordpress.com/2013/03/05/5-ways-to-access-mtconnect-data-from-a-web-application/
+
+beware, your php server must allow for server-server http communication;
+in order to do so, in providers like Altervista you may need some form of logging
+https://stackoverflow.com/questions/4172860/file-get-contents-returns-empty-string
+
+an ajax call that specifies dataType: "xml" will return an xml DOM, a document object. you can convert it into
+a string with the function XMLSerializer
+https://stackoverflow.com/questions/17670973/converting-xmldocument-object-to-string-in-javascript
+
+questo visualizzatore sembra promettente
+https://www.xmlviewer.org/
