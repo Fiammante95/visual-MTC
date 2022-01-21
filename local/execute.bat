@@ -1,0 +1,1 @@
+Powershell.exe -file "C:\Users\vales\github\visual-MTC\local\MTConnect daemon.ps1"

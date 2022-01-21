@@ -20,3 +20,26 @@ https://stackoverflow.com/questions/17670973/converting-xmldocument-object-to-st
 
 questo visualizzatore sembra promettente
 https://www.xmlviewer.org/
+
+ho creato un file "parser.php" per leggere l'xml e scaricare un file txt o xml che contiene uno specifico subset di tag
+
+parte della documentazione utilizzata:
+https://stackoverflow.com/questions/37618094/php-convert-array-to-xml
+
+la funzione xml to array custom è perchè
+https://www.w3schools.com/php/func_xml_parse_into_struct.asp
+questa funzione genera un xml che non rispetta la gerarchia e inoltre nasconde molti dati sotto "cdata"
+https://stackoverflow.com/questions/42417754/how-to-parse-cdata-xml-using-php
+
+
+ho tentato di usare queste funzioni per recuperare i dati, non ci sono riuscito e quindi per ora uso una navigazione "manuale"
+https://stackoverflow.com/questions/1019076/how-to-search-by-key-value-in-a-multidimensional-array-in-php
+https://stackoverflow.com/questions/6661530/php-multidimensional-array-search-by-value
+
+gli header in php sono importanti
+https://stackoverflow.com/questions/1693806/how-do-i-create-an-xml-file-with-php-and-have-it-prompt-to-download
+
+nota:
+questo funziona: $program = $arr["Streams"][0]["DeviceStream"][0]["content"]["ComponentStream"][0]["content"]["Events"][0]["Program"][0];
+questo no $program = $arr["Streams"][0]["DeviceStream"][0]["content"]["ComponentStream"][0]["content"]["Events"][0]["Program"];
+ossia, la function ricorsiva array to xml crasha

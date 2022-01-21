@@ -10,328 +10,46 @@
   <script type="text/javascript" src="lib/jquery-1.9.1.min.js"></script>
   <link rel="stylesheet" href="jstree-bootstrap-theme/dist/themes/proton/style.min.css" />
 
-  <style type="text/css">
-      .CodeMirror { border: 1px solid #eee; }
-    </style>
-<style>
-    .tree {
-
-    }
-.tree li {
-    list-style-type:none;
-    margin:0;
-    padding:14px 5px 0 11px;
-    position:relative
-}
-.tree li::before, .tree li::after {
-    content:'';
-    left:-13px;
-    position:absolute;
-    right:auto
-}
-.tree li::before {
-    border-left:1px dashed #999;
-    bottom:50px;
-    height:100%;
-    top:0;
-    width:1px
-}
-.tree li::after {
-    border-top:1px dashed #999;
-    height:20px;
-    top:25px;
-    width:25px
-}
-.tree li span {
-    -moz-border-radius:6px;
-    -webkit-border-radius:6px;
-    border:1px solid #999;
-    border-radius:6px;
-    display:inline-block;
-    padding:3px 8px;
-    text-decoration:none
-}
-
-.tree li.parent_li>span {
-    cursor:pointer;
-    color:#666
-}
-.tree> .box > .box-content > ul>li::before, .tree> .box > .box-content > ul>li::after {
-    border:0
-}
-.tree li:last-child::before {
-    height:31px
-}
-.tree li.parent_li>span:hover, .tree li.parent_li>span:hover+ul li span {
-    background:#eee;
-    border:1px solid #94a0b4;
-    color:#000
-}
-.center-vertical {
-    position:relative;
-    top:50%;
-    transform:translateY(-50%);
-}
-.span16 h1 a{
-    color:#000000;
-}
-.span16 h1 a:hover{
-    text-decoration:none;
-}
-.span16 h1 small a{
-   color:#999;
-}
-.popover.bottom .arrow:after{
-    border-width: 0 11px 11px;
-    border-bottom-color: rgba(0, 0, 0, 0.25);
-    top: -1px;
-    left: -1px;
-}
-#result_span{
-    padding-left: 12px;
-}
-@media all and (min-width:260px) and (max-width:768px){
-    .span16 small{
-        display: none;
-    }
-    .span7{
-        width: 96%;
-    }
-    button#leftdivfull,#rightdivfull2{
-        display: none;
-    }
-    .span2{
-        width: 96%;
-        min-height:75px;
-    }
-    .button_row{
-        display: inline-block;
-        width: 50%;
-        float: left;
-        height: 38px;
-        text-align: center;
-    }
-    button#rightdivfull{
-            display: none;
-    }
-    #to1,#to2{
-        clear: both;
-        margin-top: 8px;
-    }
-    textarea#from{
-        height: 350px;
-    }
-    #to1 .box-content,#to2 .box-content{
-        height: 350px;
-    }
-    #shareDiv{
-        display: none;
-    }
-    #shareDiv2{
-        display: inline-block;
-    }
-	.col-lg-10 {
-		padding-left:0;padding-right:0;
-	}
-
-}
-@media all and (min-width:769px){
-
-    div#centerdiv{
-        margin-top:130px;
-        margin-left:27px;
-    }
-    #to1,#to2{
-        margin-left:15px;
-    }
-    .button_row{
-        display: block;
-    }
-    textarea#from{
-        height: 600px;
-    }
-    #to1 .box-content,#to2 .box-content{
-        height: 600px;
-    }
-    .button_row{
-        display: block;
-        line-height: 62px;
-    }
-    #shareDiv2{
-        display: none;
-    }
-
-}
-    .st_facebook{
-        background-image: url(img/facebook.png);
-        height: 32px;
-        width: 32px;
-        display: inline-block;
-        margin-right: 4px;
-        cursor: pointer;
-    }
-    .st_twitter{
-        background-image: url(img/twitter.png);
-        height: 32px;
-        width: 32px;
-        display: inline-block;
-        margin-right: 4px;
-        cursor: pointer;
-    }
-    .st_linkedin{
-        background-image: url(img/linkedin.png);
-        height: 32px;
-        width: 32px;
-        display: inline-block;
-        margin-right: 4px;
-        cursor: pointer;
-    }
-    .st_pinterest{
-        background-image: url(img/pinterest.png);
-        height: 32px;
-        width: 32px;
-        display: inline-block;
-        cursor: pointer;
-    }
-    .popover-content{
-        text-align: center;
-
-    }
-	.span16 .col-sm-8{
-		padding-left:0;
-	}
-	.span16 .mad{
-		padding-top:20px;
-	}
-    </style>
-
 </head>
 
 <body>
 
-<textarea id="from" class="form-control" style="border: none; margin-bottom: 0px; display: none;" placeholder="Please enter the XML string or URL">http://79.17.144.42/current</textarea>
-<div class="tree span7" id="to1">
+<input type="radio" id="local" name="data_source" value="LOCAL" checked="checked">
+<label for="local">Local</label>
+<input type="radio" id="remote" name="data_source" value="REMOTE">
+<label for="remote">Remote</label>
+
+<input id="finput" type="file" accept="*.xml" hidden>
+
+<textarea id="from" class="form-control" placeholder="Please enter the XML string or URL">http://79.17.144.42/current</textarea>
+<div class="tree span7" id="to1" hidden>
             <div class="box">
-                <div class="box-header" style="height:42px;">
-                    <button id="rightdivfull" class="btn btn-box-right" data-original-title="Full Screen"  data-placement="top" rel="tooltip"><i class="glyphicon glyphicon-resize-full"></i></button>
+                <div class="box-header">
+
                 </div>
-                <div class="box-content" style="background-color:#ffffff; overflow:auto">
+                <div class="box-content">
                     <ul id="c"></ul>
                 </div>
             </div>
 </div>
-<div class="span7" id="to2" style="display:none;">
+<div class="span7" id="to2" hidden>
         <div class="box">
-                <div class="box-header" style="height:42px;">
-                    <button id="rightdivfull2" class="btn btn-box-right"  data-original-title="Full Screen"  data-placement="top" rel="tooltip"><i class="glyphicon glyphicon-resize-full"></i></button>
+                <div class="box-header">
+
                 </div>
-                <div class="box-content"  style="padding:0;">
-                    <textarea class="form-control" id="textarea_to" style="border:none;margin-bottom:0;"></textarea>
+                <div class="box-content" >
+                    <textarea class="form-control" id="textarea_to"></textarea>
                 </div>
         </div>
 </div>
 
-<button class="btn btn-success" id="totree"><i class="glyphicon glyphicon-tree-conifer"></i><span>Tree View</span></button>
-
-<script src="https://www.xmlviewer.org/js/bootstrap.min.js"></script>
-<script src="https://www.xmlviewer.org/js/bootstrap.tooltip.js"></script>
-<script src="https://www.xmlviewer.org/lib/codemirror.js"></script>
-<script src="https://www.xmlviewer.org/js/show-hint.js"></script>
-<script src="https://www.xmlviewer.org/js/xml-hint.js"></script>
-<script src="https://www.xmlviewer.org/lib/xml.js"></script>
-<script src="https://www.xmlviewer.org/js/closetag.js"></script>
-<script src="https://www.xmlviewer.org/js/matchbrackets.js"></script>
-<script src="https://www.xmlviewer.org/js/xml2json.js"></script>
-<script src="https://www.xmlviewer.org/js/xml-fold.js"></script>
-
+<button class="btn btn-success" id="totree"><i class="glyphicon glyphicon-tree-conifer"></i><span>Update</span></button>
+<button class="btn btn-success" id="selectfile"><i class="glyphicon glyphicon-tree-conifer"></i><span>Select File</span></button>
 
 <script>
 
-
-$(document).ready(function(){
-
-   $.ajax({
-    type: "GET" ,
-    dataType: "xml",
-    //url: "mtconnect-graphr/loader.php?url=../current_sample.xml", //using a proxy php file to load xml files from external server
-    url: "mtconnect-graphr/loader.php?url=http://79.17.144.42/",
-    cache: !1,
-    async: !1,
-    success: function(xmlObject) {
-
-
-      // Parse the xml file and get data
-        alert(xmlObject);
-        console.log(xmlObject);
-
-        var xml = new XMLSerializer().serializeToString(xmlObject.documentElement);
-
-        $("#result").html(xml);
-
-
-    }
-  });
-
-
-
-});
-
-</script>
-
-<script type="text/javascript">
-var to_textarea = null;
-var editor = editor2 = null;
-
-function completeAfter(cm, pred) {
-    var cur = cm.getCursor();
-    if (!pred || pred()) setTimeout(function() {
-      if (!cm.state.completionActive)
-        cm.showHint({completeSingle: false});
-    }, 100);
-    return CodeMirror.Pass;
-  }
-
-  function completeIfAfterLt(cm) {
-    return completeAfter(cm, function() {
-      var cur = cm.getCursor();
-      return cm.getRange(CodeMirror.Pos(cur.line, cur.ch - 1), cur) == "<";
-    });
-  }
-
-  function completeIfInTag(cm) {
-    return completeAfter(cm, function() {
-      var tok = cm.getTokenAt(cm.getCursor());
-      if (tok.type == "string" && (!/['"]/.test(tok.string.charAt(tok.string.length - 1)) || tok.string.length == 1)) return false;
-      var inner = CodeMirror.innerMode(cm.getMode(), tok.state).state;
-      return inner.tagName;
-    });
-  }
-  var editorConfig = {
-        //mode: "xml",
-        lineNumbers : true,
-        lineWrapping:true,
-        matchBrackets: true
-
-    }
-    var editor2 = CodeMirror.fromTextArea(document.getElementById("from"), {
-        //mode: "xml",
-        lineNumbers: true,
-        autoCloseTags: true,
-        matchBrackets: true
-
-      });
-    if (screen.width<=768) {
-        editor2.setSize('100%', 350);
-    }else{
-        editor2.setSize('100%', 600);
-    }
-</script>
-
-<script>
 var notenumber = 1, optbtn=0;
 var reg = /^(http|https):\/\/[^s]*/g;
-
-
 
 function UnixTimestampToDate(unixTime, timeZone) {
     if (typeof (timeZone) == 'number')
@@ -350,6 +68,7 @@ function UnixTimestampToDate(unixTime, timeZone) {
 
     return ymdhis;
 }
+
 function HTMLEncode ( str )
 {
     var    s    =    "";
@@ -362,11 +81,6 @@ function HTMLEncode ( str )
     s    =    s.replace(/\"/g,      "&quot;");
     s    =    s.replace(/\n/g,      "<br />");
     return    s;
-}
-
-function openmad()
-{
-	window.open('https://bandwagonhost.com/aff.php?aff=60971', '_blank', '')
 }
 
 function parseXml(xml) {
@@ -422,6 +136,7 @@ function fn(obj, docObj){
         return false;
     }
 }
+
 $(document).ready(function() {
         $('.tree').delegate('li.parent_li > span', 'click', function (e) {
         var children = $(this).parent('li.parent_li').find(' > ul > li');
@@ -435,233 +150,27 @@ $(document).ready(function() {
 
         e.stopPropagation();
     });
-    $("button#leftdivclear").on('click', function(e){
-        editor2.getDoc().setValue('')
-        editor.getDoc().setValue('')
-        $("ul#c").html('')
-        if (editor!=null) {
-            editor.getDoc().setValue('')
 
-        };
-    })
-    $("button#leftdivfull").on('click', function(e){
-        if ($(this).find('i').hasClass('glyphicon-resize-full')) {
-            $(this).attr({'data-original-title':'Restore'});
-            $(this).parents('.span7').addClass('span16').removeClass('span7')
-            $(this).find('i').addClass('glyphicon-resize-small').removeClass('glyphicon-resize-full')
-            $('.span2').hide();
-            $(".span7:visible").hide()
-        } else {
-            $(this).attr({'data-original-title':'Full screen'});
-            $(this).parents('.span16').addClass('span7').removeClass('span16')
-            $(this).find('i').addClass('glyphicon-resize-full').removeClass('glyphicon-resize-small')
-            $('.span2').show();
-            if (optbtn==1||optbtn==2) {
-                $("div#to2").show()
-                $("div#to1").hide()
-            }else if(optbtn==3||optbtn==0){
-                $("div#to1").show()
-                $("div#to2").hide()
-            }
 
-        }
-    })
-
-    $("#leftdivimport").on('click', function(){
-        var sample = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><note><to>George</to><from>John</from><heading>Reminder</heading><body>Don't forget the meeting!</body></note>";
-        editor2.getDoc().setValue(formatxml2(($.parseXML(sample))));
-    })
-
-    $("button#rightdivfull, button#rightdivfull2").on('click', function(e){
-        if ($(this).find('i').hasClass('glyphicon-resize-full')) {
-            $(this).attr({'data-original-title':'Restore'});
-            $(this).parents('.span7').addClass('span16').removeClass('span7')
-            $(this).find('i').addClass('glyphicon-resize-small').removeClass('glyphicon-resize-full')
-            $('.span2').hide();
-            $(".span7:visible").hide()
-            if (editor!=null) {
-                //editor.setSize('100%', 550)
-            };
-        } else {
-            $(this).attr({'data-original-title':'Full screen'});
-            $(this).parents('.span16').addClass('span7').removeClass('span16')
-            $(this).find('i').addClass('glyphicon-resize-full').removeClass('glyphicon-resize-small')
-            $('.span2').show();
-            $('.span7').eq(0).show()
-            if (editor!=null) {
-                //editor.setSize('500', '550')
-            };
-
-        }
-    })
-    $("[rel=tooltip]").tooltip();
-    $("[data-toggle=popover]").popover({
-        html : true,
-        content: function() {
-            return $("#popover-content").html();
-        }
-
-    });
     $("#totree").on('click', function(){
         xmltotree(this)
-        $('.box-header span').remove()
-        $('#to1 .box-header,#to2 .box-header').prepend('<span id="result_span">'+$(this).find('span').html()+' Result:</span>');
-    })
-    $("#toformat").on('click', function(){
-        formatxml(this)
-        $('.box-header span').remove()
-        $('#to1 .box-header,#to2 .box-header').prepend('<span id="result_span">'+$(this).find('span').html()+' Result:</span>');
-    })
-    $("#tocompress").on('click', function(){
-        xmlcompress(this)
-        $('.box-header span').remove()
-        $('#to1 .box-header,#to2 .box-header').prepend('<span id="result_span">'+$(this).find('span').html()+' Result:</span>');
-    })
-    $("#tobrowse").on('click', function(){
-            $('#form-upload').remove();
-            $('body').append('<form enctype="multipart/form-data" id="form-upload" style="display:none;"><input type="file" name="file" accept="application/xml" /></form>');
-            $('#form-upload input[type=\'file\']').trigger('click');
-            if (typeof interval != 'undefined') {
-                clearInterval(interval);
-            }
-            interval = setInterval(function() {
-            if ($('#form-upload input[type=\'file\']').val() != '') {
-                clearInterval(interval);
-                $.ajax({
-                    url: 'upload.php',
-                    type: 'post',
-                    dataType: 'xml',
-                    data: new FormData($('#form-upload')[0]),
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    beforeSend: function() {
-                        $('#tobrowse').find('span').html('Loading..');
-                        $('#tobrowse').prop("disabled", true)
-                    },
-                    complete: function() {
-                        $('#tobrowse').find('span').html('Browse');
-                        $('#tobrowse').removeAttr("disabled")
-                    },
-                    success: function(data) {
-                        if ($(data).find("errors>code").text()=='405') {
-                            alert('XML File Required!');
-                        }else
-                        {
-                           editor2.getDoc().setValue(formatxml2(xmlToString(data)));
-                           $("ul#c").html('')
-                           if (editor == null) {
-                                to_textarea = document.getElementById("textarea_to");
-                                editor = CodeMirror.fromTextArea(to_textarea, editorConfig);
-                                if (screen.width<=768) {
-                                    editor.setSize('100%', 350);
-                                }else{
-                                    editor.setSize('100%', 600);
-                                }
 
-                            }
-                           editor.getDoc().setValue('')
-                        }
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        alert(thrownError+ xhr.responseText);
-                    }
-                });
-            }}
-            ,300);
-    })
-    if (screen.width<=768) {
-        editorConfig.lineWrapping=false;
-    }else{
-        editorConfig.lineWrapping=true;
-    }
-    $("#tojson").on('click', function(){
-        if(editor2.getDoc().getValue() == ''){
-            return false;
-        }
-        $("div#to1").hide();
-        $("div#to2").show();
-        $('.box-header span').remove()
-        $('#to2 .box-header').prepend('<span id="result_span">'+$(this).find('span').html()+' Result:</span>');
-        if (editor == null) {
-            to_textarea = document.getElementById("textarea_to");
-            editor = CodeMirror.fromTextArea(to_textarea, editorConfig);
-            if (screen.width<=768) {
-                editor.setSize('100%', 350);
-            }else{
-                editor.setSize('100%', 600);
-            }
-        }
-        editor.getDoc().setValue(xml2json(parseXml(editor2.getDoc().getValue()), "\t"));
+    });
 
-    })
+
+    $("#selectfile").on('click', function(){
+
+      $('#finput').trigger('click');
+
+    });
 
 });
-function xmlcompress(obj){
-    optbtn=2;
-    if($.trim(editor2.getDoc().getValue()).match(reg)){
-        $('span', obj).html('Loading..');
-        $(obj).prop({"disabled":true})
-        $.ajax({
-            url : 'loadxml.php',
-            dataType : 'xml',
-            data : {'url': editor2.getDoc().getValue()},
-            type : 'post',
-            success : function(data){
-                if($(data).find("errors>code").text() == '404'){
-                    alert('The Page is unavailable!');
-                }else if($(data).find("errors>code").text() == '405'){
-                     alert('The Page Contain Invalid XML!');
-                }else{
-                    editor2.getDoc().setValue(formatxml2(xmlToString(data)))
-                    xmlcompress2(editor2.getDoc().getValue());
-                }
-                $('span', obj).html('Minify');
-                $(obj).prop({"disabled":false})
-            }
-        })
-    }else{
-        xmlcompress2(editor2.getDoc().getValue());
-    }
 
-}
-
-
-function xmlcompress2(textareaval2)
-{
-    $("div#to1").hide();
-    $("div#to2").show();
-
-    if($.trim(textareaval2)=='') return;
-    var opt2 = textareaval2.replace(/>[\s]+</g, '><')
-    opt2.replace(/[\r\n]+/g,'')
-    try{
-        var opt2 = $.parseXML(opt2);
-    }catch(e){
-        alert(e.message.split(':')[0]);
-        return;
-    }
-    opt2=xmlToString(opt2)
-    $("div#to2 textarea").val(opt2)
-    if (editor == null) {
-            to_textarea = document.getElementById("textarea_to");
-            editor = CodeMirror.fromTextArea(to_textarea, editorConfig);
-            if (screen.width<=768) {
-                editor.setSize('100%', 350);
-            }else{
-                editor.setSize('100%', 600);
-            }
-
-        }else{
-            editor.getDoc().setValue(opt2);
-        }
-}
 function xmlToString(xmlDoc) {
     if (window.ActiveXObject) {
         return xmlDoc.xml;
     } else {
 
-        alert(xmlDoc);
         return (new XMLSerializer()).serializeToString(xmlDoc.documentElement);
     }
 }
@@ -669,12 +178,11 @@ function formatxml(obj) {
     optbtn=1;
 
     if($.trim($('textarea#from').val()).match(reg)){
-        $('span', obj).html('Loading..');
-        $(obj).prop({"disabled":true})
+
         $.ajax({
             url : 'loadxml.php',
             dataType : 'xml',
-            data : {'url': editor2.getDoc().getValue()},
+            data : {'url': $("textarea#from").val()},
             type : 'post',
             success : function(data){
                 if($(data).find("errors>code").text() == '404'){
@@ -683,7 +191,7 @@ function formatxml(obj) {
                      alert('The Page Contain Invalid XML!');
                 }else{
                     $('textarea#from').val(formatxml2(xmlToString(data)))
-                    var outXML = formatxml2(editor2.getDoc().getValue());
+                    var outXML = formatxml2($("textarea#from").val());
                     $("div#to2 textarea").val(outXML);
                 }
                 $('span', obj).html('Format');
@@ -691,7 +199,7 @@ function formatxml(obj) {
             }
         })
     }else{
-        var opt2 = editor2.getDoc().getValue().replace(/>[\s]+</g, '><')
+        var opt2 = $("textarea#from").val().replace(/>[\s]+</g, '><')
         opt2.replace(/[\r\n]+/g,'')
         try{
             var opt2 = $.parseXML(opt2);
@@ -699,7 +207,7 @@ function formatxml(obj) {
             alert(e.message.split(':')[0]);
             return;
         }
-        var outXML = formatxml2(editor2.getDoc().getValue())
+        var outXML = formatxml2($("textarea#from").val())
         $("div#to2 textarea").val(outXML);
         if (editor == null) {
             to_textarea = document.getElementById("textarea_to");
@@ -780,13 +288,28 @@ function get_prefix(prefixIndex) {
 
 function xmltotree(obj)
 {
-    if($.trim(editor2.getDoc().getValue()).match(reg)){
-        $('span', obj).html('Loading..');
-        $(obj).prop({"disabled":true})
+    if($.trim($("textarea#from").val()).match(reg)){
+
+      if($("#local").is(":checked"))
+      {
+
+
+          var files = $('#finput').prop('files');
+          $("textarea#from").val(files[0].name);
+
+          $.get(files[0].name, function(data) {
+              console.log(data);
+              }, 'text');
+
+          xmltotree2($("textarea#from").val());
+
+
+      }else {
+
         $.ajax({
             url : 'mtconnect-graphr/loader.php',
             dataType : 'xml',
-            data : {'url': editor2.getDoc().getValue()},
+            data : {'url': $("textarea#from").val()},
             type : 'get',
             success : function(data){
                 if($(data).find("code").text() == '404'){
@@ -794,18 +317,21 @@ function xmltotree(obj)
                 }else if($(data).find("code").text() == '405'){
                      alert('The Page Contain Invalid XML!');
                 }else{
-                    console.log(editor2.getDoc().getValue());
-                    editor2.getDoc().setValue(formatxml2(xmlToString(data)));
+                    console.log($("textarea#from").val());
+                    $("textarea#from").val(formatxml2(xmlToString(data)));
                     xmltotree2($('textarea#from').val());
 
                 }
-                $('span', obj).html('Tree View');
+
                 $(obj).prop({"disabled":false})
             }
         })
+
+      }
+
+
     }else{
-        alert("we here");
-        xmltotree2(editor2.getDoc().getValue());
+        xmltotree2($("textarea#from").val());
     }
 
 }
@@ -834,8 +360,6 @@ function xmltotree2(textareaval)
     });
 }
 </script>
-
-
 
 </body>
 </html>
